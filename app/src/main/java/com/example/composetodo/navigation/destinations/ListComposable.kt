@@ -8,11 +8,15 @@ import com.example.composetodo.ui.screens.list.ListScreen
 import com.example.composetodo.util.Constants.LIST_ARGUMENT_KEY
 import com.example.composetodo.util.Constants.LIST_SCREEN
 
-fun NavGraphBuilder.listComposable(navigateToTaskScreen: (Int) -> Unit) {
-    composable(route = LIST_SCREEN, arguments = listOf(navArgument(LIST_ARGUMENT_KEY) {
-        type = NavType.StringType
-    })
-    ){
+fun NavGraphBuilder.listComposable(
+    navigateToTaskScreen: (taskId: Int) -> Unit
+) {
+    composable(
+        route = LIST_SCREEN,
+        arguments = listOf(navArgument(LIST_ARGUMENT_KEY) {
+            type = NavType.StringType
+        })
+    ) {
         ListScreen(navigateToTaskScreen = navigateToTaskScreen)
     }
 }
