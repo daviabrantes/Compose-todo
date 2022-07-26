@@ -6,4 +6,6 @@
     <string name="close_action">Close Search</string>
     <string name="sort_action">Sort Tasks</string>
     <string name="list_screen_title">Tasks</string>
+    <string name="sad_face_icon">Sad Face Icon</string>
+    <string name="empty_content">No Tasks Found.</string>
 </resources>
