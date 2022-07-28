@@ -12,7 +12,8 @@ fun NavGraphBuilder.taskComposable(navigateToListScreen: (Action) -> Unit) {
     composable(route = TASK_SCREEN, arguments = listOf(navArgument(TASK_ARGUMENT_KEY) {
         type = NavType.IntType
     })
-    ){
+    ){ navBackStackEntry ->
+        val taskId = navBackStackEntry.arguments!!.getInt(TASK_ARGUMENT_KEY)
 
     }
 }
