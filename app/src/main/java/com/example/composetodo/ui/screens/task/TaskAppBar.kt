@@ -1,5 +1,6 @@
 package com.example.composetodo.ui.screens.task
 
+import androidx.compose.foundation.layout.padding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.ArrowBack
@@ -7,9 +8,11 @@ import androidx.compose.material.icons.filled.Check
 import androidx.compose.material.icons.filled.Close
 import androidx.compose.material.icons.filled.Delete
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.example.composetodo.ui.theme.topAppBarBackgroundColor
 import com.example.composetodo.ui.theme.topAppBarContentColor
 import com.example.composetodo.util.Action
@@ -50,9 +53,7 @@ fun NewTaskAppBar(
         actions = {
             AddAction(onAddClicked = navigateToListScreen)
         }
-    ) {
-
-    }
+    )
 }
 
 @Composable
@@ -87,7 +88,7 @@ fun ExistingTaskAppBar(
     navigateToListScreen: (Action) -> Unit
 ) {
     TopAppBar(
-        navigationIcon = {
+            navigationIcon = {
             CloseAction(onCloseClicked = navigateToListScreen)
         },
         title = {
@@ -100,12 +101,10 @@ fun ExistingTaskAppBar(
         },
         backgroundColor = MaterialTheme.colors.topAppBarBackgroundColor,
         actions = {
-            DeleteAction(onDeleteClicked = navigateToListScreen),
+            DeleteAction(onDeleteClicked = navigateToListScreen)
             UpdateAction(onUpdateClicked = navigateToListScreen)
         },
-    ) {
-
-    }
+        )
 }
 
 @Composable
