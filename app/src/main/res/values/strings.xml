@@ -1,5 +1,7 @@
 <resources>
     <string name="app_name">Compose Todo</string>
+    <string name="delete_task">Remove \'%1$s\'?</string>
+    <string name="delete_task_confirmation">Are you sure you want to remove \'%1$s\'?</string>
     <string name="add_button">Add Button</string> 
     <string name="search_action">Search Tasks</string>
     <string name="delete_all_action">Delete All</string>
