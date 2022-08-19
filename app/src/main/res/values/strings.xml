@@ -1,5 +1,8 @@
 <resources>
     <string name="app_name">Compose Todo</string>
+
+    <string name="delete_all_tasks">Remove All Tasks?</string>
+    <string name="delete_all_tasks_confirmation">Are you sure you want to remove all tasks? There is no going back after this.</string>
     <string name="delete_task">Remove \'%1$s\'?</string>
     <string name="delete_task_confirmation">Are you sure you want to remove \'%1$s\'?</string>
     <string name="add_button">Add Button</string> 
