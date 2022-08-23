@@ -37,6 +37,5 @@ fun NavGraphBuilder.taskComposable(
             sharedViewModel = sharedViewModel,
             navigateToListScreen = navigateToListScreen
         )
-
     }
 }
