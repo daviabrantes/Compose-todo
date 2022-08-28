@@ -1,21 +1,25 @@
 package com.example.composetodo.navigation.destinations
 
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.slideOutVertically
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.NavType
 import androidx.navigation.compose.composable
-import androidx.navigation.navArgument
-import com.example.composetodo.ui.screens.list.ListScreen
 import com.example.composetodo.ui.screens.splash.SplashScreen
-import com.example.composetodo.ui.viewmodels.SharedViewModel
 import com.example.composetodo.util.Constants
-import com.example.composetodo.util.toAction
 
+@ExperimentalAnimationApi
 fun NavGraphBuilder.splashComposable(
     navigateToListScreen: () -> Unit,
 ) {
     composable(
         route = Constants.SPLASH_SCREEN,
+        targetOffsetY = { fullHeight -> -fullHeight },
+        exitTransition = { _, _ ->
+            slideOutVertically(
+                animationSpec = tween(durationMillis = 300)
+            )
+        }
     ) {
         SplashScreen(navigateToListScreen = navigateToListScreen)
     }

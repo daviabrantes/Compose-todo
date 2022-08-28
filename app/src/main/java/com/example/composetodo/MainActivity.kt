@@ -4,14 +4,16 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.navigation.NavHostController
-import androidx.navigation.compose.rememberNavController
 import com.example.composetodo.navigation.setupNavigation
 import com.example.composetodo.ui.theme.ComposeTodoTheme
 import com.example.composetodo.ui.viewmodels.SharedViewModel
+import com.google.accompanist.navigation.animation.rememberAnimatedNavController
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@OptIn(ExperimentalAnimationApi::class)
 class MainActivity : ComponentActivity() {
 
     private lateinit var navController: NavHostController
@@ -20,7 +22,7 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             ComposeTodoTheme {
-                navController = rememberNavController()
+                navController = rememberAnimatedNavController()
                 setupNavigation(
                     navController = navController,
                     sharedViewModel = sharedViewModel
