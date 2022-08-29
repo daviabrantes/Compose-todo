@@ -4,19 +4,19 @@ import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.animation.core.tween
 import androidx.compose.animation.slideOutVertically
 import androidx.navigation.NavGraphBuilder
-import androidx.navigation.compose.composable
 import com.example.composetodo.ui.screens.splash.SplashScreen
-import com.example.composetodo.util.Constants
+import com.google.accompanist.navigation.animation.composable
+import com.example.composetodo.util.Constants.SPLASH_SCREEN as SPLASH_SCREEN1
 
 @ExperimentalAnimationApi
 fun NavGraphBuilder.splashComposable(
     navigateToListScreen: () -> Unit,
 ) {
     composable(
-        route = Constants.SPLASH_SCREEN,
-        targetOffsetY = { fullHeight -> -fullHeight },
-        exitTransition = { _, _ ->
+        route = SPLASH_SCREEN1,
+        exitTransition = {
             slideOutVertically(
+                targetOffsetY = { fullHeight -> -fullHeight },
                 animationSpec = tween(durationMillis = 300)
             )
         }
