@@ -28,7 +28,7 @@ fun ListScreen(
     }
 
     LaunchedEffect(key1 = action) {
-        sharedViewModel.handleDatabaseActions()
+        sharedViewModel.handleDatabaseActions(action = action)
     }
 
     val allTasks by sharedViewModel.allTasks.collectAsState()
