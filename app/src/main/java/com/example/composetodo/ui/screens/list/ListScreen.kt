@@ -18,6 +18,7 @@ import kotlinx.coroutines.launch
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
 fun ListScreen(
+    action: Action,
     navigateToTaskScreen: (taskId: Int) -> Unit,
     sharedViewModel: SharedViewModel
 ) {
@@ -26,7 +27,9 @@ fun ListScreen(
         sharedViewModel.readSortState()
     }
 
-    val action by sharedViewModel.action
+    LaunchedEffect(key1 = action) {
+        sharedViewModel.handleDatabaseActions()
+    }
 
     val allTasks by sharedViewModel.allTasks.collectAsState()
     val searchedTasks by sharedViewModel.searchedTasks.collectAsState()
@@ -42,7 +45,7 @@ fun ListScreen(
 
     DisplaySnackBar(
         scaffoldState = scaffoldState,
-        handleDatabaseActions = { sharedViewModel.handleDatabaseActions(action = action) },
+        onComplete = { sharedViewModel.action.value = it },
         onUndoClicked = {
             sharedViewModel.action.value = it
         },
@@ -103,13 +106,11 @@ fun ListFab(
 @Composable
 fun DisplaySnackBar(
     scaffoldState: ScaffoldState,
-    handleDatabaseActions: () -> Unit,
+    onComplete: (Action) -> Unit,
     onUndoClicked: (Action) -> Unit,
     taskTitle: String,
     action: Action
 ) {
-    handleDatabaseActions()
-
     val scope = rememberCoroutineScope()
     LaunchedEffect(key1 = action) {
         if (action != Action.NO_ACTION) {
@@ -124,6 +125,7 @@ fun DisplaySnackBar(
                     onUndoClicked = onUndoClicked
                 )
             }
+            onComplete(Action.NO_ACTION)
         }
     }
 }
