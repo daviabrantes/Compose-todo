@@ -7,7 +7,6 @@ import androidx.compose.material.icons.filled.Add
 import androidx.compose.runtime.*
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
-import androidx.compose.ui.tooling.preview.Preview
 import com.example.composetodo.R
 import com.example.composetodo.ui.theme.fabBackgroundColor
 import com.example.composetodo.ui.viewmodels.SharedViewModel
@@ -22,11 +21,6 @@ fun ListScreen(
     navigateToTaskScreen: (taskId: Int) -> Unit,
     sharedViewModel: SharedViewModel
 ) {
-    LaunchedEffect(key1 = true) {
-        sharedViewModel.getAllTasks()
-        sharedViewModel.readSortState()
-    }
-
     LaunchedEffect(key1 = action) {
         sharedViewModel.handleDatabaseActions(action = action)
     }

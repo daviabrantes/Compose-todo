@@ -47,6 +47,11 @@ class SharedViewModel @Inject constructor(
     private val _sortState = MutableStateFlow<RequestState<Priority>>(RequestState.Idle)
     val sortState: StateFlow<RequestState<Priority>> = _sortState
 
+    init {
+        getAllTasks()
+        readSortState()
+    }
+
     val lowPriorityTasks: StateFlow<List<ToDoTask>> = repository.sortByLowPriority.stateIn(
         scope = viewModelScope,
         started = SharingStarted.WhileSubscribed(),
@@ -74,7 +79,7 @@ class SharedViewModel @Inject constructor(
         searchAppBarState.value = SearchAppBarState.TRIGGERED
     }
 
-    fun readSortState() {
+    private fun readSortState() {
         _sortState.value = RequestState.Loading
         try {
             viewModelScope.launch {
@@ -95,7 +100,7 @@ class SharedViewModel @Inject constructor(
         }
     }
 
-    fun getAllTasks() {
+    private fun getAllTasks() {
         _allTasks.value = RequestState.Loading
         try {
             viewModelScope.launch {
