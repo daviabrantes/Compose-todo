@@ -30,7 +30,6 @@ import com.example.composetodo.ui.theme.*
 import com.example.composetodo.ui.viewmodels.SharedViewModel
 import com.example.composetodo.util.Action
 import com.example.composetodo.util.SearchAppBarState
-import com.example.composetodo.util.TrailingIconState
 
 @Composable
 fun ListAppBar(
@@ -216,8 +215,6 @@ fun SearchAppBar(
     onSearchClicked: (String) -> Unit
 ) {
 
-    var trailingIconState by remember { mutableStateOf(TrailingIconState.READY_TO_DELETE) }
-
         Surface(modifier = Modifier
             .fillMaxWidth()
             .height(TOP_APP_BAR_HEIGHT),
@@ -259,19 +256,10 @@ fun SearchAppBar(
                 trailingIcon = {
                     IconButton(
                         onClick = {
-                            when(trailingIconState) {
-                                TrailingIconState.READY_TO_DELETE -> {
-                                    onTextChange("")
-                                    trailingIconState = TrailingIconState.READY_TO_CLOSE
-                                }
-                                TrailingIconState.READY_TO_CLOSE -> {
-                                    if(text.isNotEmpty()) {
-                                        onTextChange("")
-                                    } else {
-                                        onCloseClicked()
-                                        trailingIconState = TrailingIconState.READY_TO_DELETE
-                                    }
-                                }
+                            if(text.isNotEmpty()){
+                                onTextChange("")
+                            } else {
+                                onCloseClicked()
                             }
                         }
                     ) {
