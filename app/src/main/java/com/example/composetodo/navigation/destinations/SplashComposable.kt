@@ -6,14 +6,14 @@ import androidx.compose.animation.slideOutVertically
 import androidx.navigation.NavGraphBuilder
 import com.example.composetodo.ui.screens.splash.SplashScreen
 import com.google.accompanist.navigation.animation.composable
-import com.example.composetodo.util.Constants.SPLASH_SCREEN as SPLASH_SCREEN1
+import com.example.composetodo.util.Constants.SPLASH_SCREEN
 
 @ExperimentalAnimationApi
 fun NavGraphBuilder.splashComposable(
     navigateToListScreen: () -> Unit,
 ) {
     composable(
-        route = SPLASH_SCREEN1,
+        route = SPLASH_SCREEN,
         exitTransition = {
             slideOutVertically(
                 targetOffsetY = { fullHeight -> -fullHeight },

@@ -7,7 +7,7 @@ import com.example.composetodo.util.Constants.SPLASH_SCREEN
 
 class Screens(navController: NavHostController) {
     val splash: () -> Unit = {
-        navController.navigate(route = "list/${Action.NO_ACTION.name}") {
+        navController.navigate(route = "list/${Action.NO_ACTION}") {
             popUpTo(SPLASH_SCREEN) { inclusive = true }
         }
     }
@@ -21,6 +21,4 @@ class Screens(navController: NavHostController) {
             popUpTo(LIST_SCREEN) {inclusive = true}
         }
     }
-
-
 }

@@ -102,11 +102,11 @@ fun ExistingTaskAppBar(
         },
         backgroundColor = MaterialTheme.colors.topAppBarBackgroundColor,
         actions = {
-            ExistingAppBarActions(
+            ExistingTaskAppBarActions(
                 selectedTask = selectedTask,
                 navigateToListScreen = navigateToListScreen
             )
-        },
+        }
     )
 }
 
@@ -124,23 +124,27 @@ fun CloseAction(
 }
 
 @Composable
-fun ExistingAppBarActions(
+fun ExistingTaskAppBarActions(
     selectedTask: ToDoTask,
     navigateToListScreen: (Action) -> Unit
 ) {
-    var openDialog by remember {
-        mutableStateOf(false)
-    }
+    var openDialog by remember { mutableStateOf(false) }
 
     DisplayAlertDialog(
-        title = stringResource(id = R.string.delete_task, selectedTask.title),
-        message = stringResource(id = R.string.delete_task_confirmation, selectedTask.title),
+        title = stringResource(
+            id = R.string.delete_task,
+            selectedTask.title
+        ),
+        message = stringResource(
+            id = R.string.delete_task_confirmation,
+            selectedTask.title
+        ),
         openDialog = openDialog,
         closeDialog = { openDialog = false },
         onYesClicked = { navigateToListScreen(Action.DELETE) }
     )
 
-    DeleteAction(onDeleteClicked = {openDialog = true })
+    DeleteAction(onDeleteClicked = { openDialog = true })
     UpdateAction(onUpdateClicked = navigateToListScreen)
 }
 

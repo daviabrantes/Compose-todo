@@ -19,6 +19,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.example.composetodo.R
 import com.example.composetodo.ui.theme.LOGO_HEIGHT
@@ -31,22 +32,30 @@ fun SplashScreen(
     navigateToListScreen: () -> Unit
 ) {
     var startAnimation by remember { mutableStateOf(false) }
-
     val offsetState by animateDpAsState(
-        targetValue = if(startAnimation) 0.dp else 100.dp,
-        animationSpec = tween(durationMillis = 1000)
+        targetValue = if (startAnimation) 0.dp else 100.dp,
+        animationSpec = tween(
+            durationMillis = 1000
+        )
     )
-
     val alphaState by animateFloatAsState(
-        targetValue = if(startAnimation) 1f else 0f,
-        animationSpec = tween(durationMillis = 1000)
+        targetValue = if (startAnimation) 1f else 0f,
+        animationSpec = tween(
+            durationMillis = 1000
+        )
     )
 
     LaunchedEffect(key1 = true) {
         startAnimation = true
         delay(SPLASH_SCREEN_DELAY)
-        navigateToListScreen
+        navigateToListScreen()
     }
+
+    Splash(offsetState = offsetState, alphaState = alphaState)
+}
+
+@Composable
+fun Splash(offsetState: Dp, alphaState: Float) {
     Box(
         modifier = Modifier
             .fillMaxSize()
@@ -74,9 +83,7 @@ fun getLogo(): Int {
 }
 
 @Composable
-@Preview(uiMode = UI_MODE_NIGHT_YES)
+@Preview
 private fun SplashScreenPreview() {
-    SplashScreen(
-        navigateToListScreen = {}
-    )
+    Splash(offsetState = 0.dp, alphaState = 1f)
 }

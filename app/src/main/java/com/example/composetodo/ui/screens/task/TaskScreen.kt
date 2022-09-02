@@ -3,10 +3,7 @@ package com.example.composetodo.ui.screens.task
 import android.annotation.SuppressLint
 import android.content.Context
 import android.widget.Toast
-import androidx.activity.OnBackPressedCallback
-import androidx.activity.OnBackPressedDispatcher
 import androidx.activity.compose.BackHandler
-import androidx.activity.compose.LocalOnBackPressedDispatcherOwner
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.*
 import androidx.compose.ui.platform.LocalContext
@@ -14,6 +11,7 @@ import com.example.composetodo.data.models.Priority
 import com.example.composetodo.data.models.ToDoTask
 import com.example.composetodo.ui.viewmodels.SharedViewModel
 import com.example.composetodo.util.Action
+import androidx.compose.runtime.Composable
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
