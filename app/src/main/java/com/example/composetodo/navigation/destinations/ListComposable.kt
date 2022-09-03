@@ -1,5 +1,7 @@
 package com.example.composetodo.navigation.destinations
 
+import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -16,6 +18,8 @@ import com.example.composetodo.util.Constants.LIST_ARGUMENT_KEY
 import com.example.composetodo.util.Constants.LIST_SCREEN
 import com.example.composetodo.util.toAction
 
+@ExperimentalAnimationApi
+@OptIn(ExperimentalMaterialApi::class)
 fun NavGraphBuilder.listComposable(
     navigateToTaskScreen: (taskId: Int) -> Unit,
     sharedViewModel: SharedViewModel
@@ -35,11 +39,11 @@ fun NavGraphBuilder.listComposable(
         LaunchedEffect(key1 = myAction) {
             if(action != myAction) {
                 myAction = action
-                sharedViewModel.action.value = action
+                sharedViewModel.updateAction(newAction = action)
             }
         }
 
-        val databaseAction by sharedViewModel.action
+        val databaseAction = sharedViewModel.action
 
         ListScreen(
             action = databaseAction,
